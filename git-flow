@@ -1,0 +1,70 @@
+Git commits when using feature branches:
+
+### 1. **Branch Naming Convention**
+- **Use descriptive names**: Feature branches should be named according to the feature or task they are addressing. This makes it easy to understand the purpose of the branch at a glance.
+- **Example naming convention**: 
+  - Features: `feature/<short-description>` (e.g., `feature/add-login-functionality`)
+  - Bugs: `bugfix/<issue-number>` (e.g., `bugfix/1234-fix-login-error`)
+  - Hotfixes: `hotfix/<short-description>` (e.g., `hotfix/fix-production-bug`)
+
+### 2. **Commit Message Format**
+- **Use clear, concise language**: The commit message should clearly describe the change being made.
+- **Start with an imperative verb**: E.g., "Add", "Fix", "Update", etc.
+- **Include references to issues or tasks**: If applicable, include the issue number or task reference.
+- **Example format**:
+  - **Single-line commit message**: `Add login functionality to the application (#1234)`
+  - **Multi-line commit message**:
+    ```
+    Add login functionality to the application
+
+    - Implement user authentication using JWT
+    - Add login form to the frontend
+    - Handle authentication errors
+
+    Resolves: #1234
+    ```
+
+### 3. **Commit Frequency**
+- **Commit often**: Commit changes frequently to save your progress and allow for easier debugging and reviews.
+- **Small, atomic commits**: Each commit should represent a single change or piece of functionality. This makes it easier to track changes and roll back if needed.
+
+### 4. **Rebasing and Merging**
+- **Rebase regularly**: When working on a feature branch, regularly rebase your branch with the `main` or `develop` branch to keep your changes up to date.
+  - `git fetch origin`
+  - `git rebase origin/main`
+- **Squash commits on merge**: When merging the feature branch back into the main branch, consider squashing your commits to keep the history clean.
+  - Example: `git merge --squash feature/add-login-functionality`
+
+### 5. **Code Review**
+- **Open a pull request (PR)**: Before merging a feature branch into `main`, open a PR to facilitate code review.
+- **Assign reviewers**: Assign at least one or two team members to review the code. Include details about the feature and any specific areas that need attention.
+- **Use CI/CD**: Ensure that your commits pass all automated tests and checks before merging.
+
+### 6. **Branch Protection Rules (Optional)**
+- **Require pull request reviews**: Enforce that all merges to `main` must go through a pull request with at least one approval.
+- **Enforce commit message conventions**: You can use tools like `commitlint` to enforce commit message rules automatically.
+- **Ensure tests pass**: Set up branch protection to require all CI tests to pass before merging.
+
+### 7. **Example Workflow**
+1. **Create a Feature Branch**:
+   ```bash
+   git checkout -b feature/add-login-functionality
+   ```
+2. **Make Changes and Commit**:
+   ```bash
+   git add .
+   git commit -m "Add login API endpoint"
+   ```
+3. **Rebase Regularly**:
+   ```bash
+   git fetch origin
+   git rebase origin/main
+   ```
+4. **Push to Remote**:
+   ```bash
+   git push origin feature/add-login-functionality
+   ```
+5. **Open a Pull Request** on your Git platform and assign reviewers.
+6. **Merge with Squash** after approval and CI checks pass.
+
+By following these rules, your team can maintain a clean and understandable Git history, making collaboration smoother and more efficient.
